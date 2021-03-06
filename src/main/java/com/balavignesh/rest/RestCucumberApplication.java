@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RestCucumberDemoApplication {
+public class RestCucumberApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RestCucumberDemoApplication.class, args);
+		SpringApplication.run(RestCucumberApplication.class, args);
 	}
 
 }
