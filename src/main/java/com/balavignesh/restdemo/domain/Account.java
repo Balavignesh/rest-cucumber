@@ -2,12 +2,16 @@ package com.balavignesh.restdemo.domain;
 
 import com.balavignesh.restdemo.common.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "ACCOUNT")
 @JsonIgnoreProperties(ignoreUnknown = true)
