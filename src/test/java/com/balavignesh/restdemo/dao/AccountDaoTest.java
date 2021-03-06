@@ -11,6 +11,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 
+import java.sql.Timestamp;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -51,8 +52,17 @@ public class AccountDaoTest {
     private Stream<Account> getAccountList(){
         Account account = new Account(100L, "Account Test",
                 "DDA", true);
-        Account account2 = new Account(100L, "Account Test",
-                "DDA", true);
+
+        Account account2 = new Account();
+        account2.setAccountIdentifier(200L);
+        account2.setAccountName("Account Test2");
+        account2.setAccountType("C3");
+        account2.setAccountStatus(true);
+        account2.setAddedBy("TEST");
+        account2.setUpdatedBy("TEST");
+        account2.setAddedTimestamp(new Timestamp(System.currentTimeMillis()));
+        account2.setUpdatedTimestamp(new Timestamp(System.currentTimeMillis()));
+
         return Stream.of(account,account2);
     }
 
