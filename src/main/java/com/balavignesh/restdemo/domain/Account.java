@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Account {
 
-    private String accountIdentifier;
+    private Long accountIdentifier;
 
     private String accountName;
 

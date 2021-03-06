@@ -35,7 +35,7 @@ public class AccountDaoImpl implements AccountDao {
 
     @Override
     public Account saveAccount(Account account) {
-        account.setAccountIdentifier("000012345");
+        account.setAccountIdentifier(000012345L);
         return account;
     }
 }
