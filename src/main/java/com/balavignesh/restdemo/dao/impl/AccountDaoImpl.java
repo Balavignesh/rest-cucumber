@@ -3,19 +3,17 @@ package com.balavignesh.restdemo.dao.impl;
 import com.balavignesh.restdemo.dao.AccountDao;
 import com.balavignesh.restdemo.dao.AccountRepository;
 import com.balavignesh.restdemo.domain.Account;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
 @Repository
+@Slf4j
 public class AccountDaoImpl implements AccountDao {
 
     @Autowired
@@ -39,6 +37,7 @@ public class AccountDaoImpl implements AccountDao {
     @Override
     @Transactional
     public synchronized Account saveAccount(Account account) {
+        log.debug("Entering AccountDaoImpl saveAccount");
         account.setAddedBy("APP");
         account.setAddedTimestamp(new Timestamp(System.currentTimeMillis()));
         return accountRepository.save(account);

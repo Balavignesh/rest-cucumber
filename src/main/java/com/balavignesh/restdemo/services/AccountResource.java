@@ -2,7 +2,6 @@ package com.balavignesh.restdemo.services;
 
 import com.balavignesh.restdemo.dao.AccountDao;
 import com.balavignesh.restdemo.domain.Account;
-import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,8 +28,9 @@ public class AccountResource {
     @GetMapping("/account")
     @ResponseBody
     public List<Account> getAccountList() throws IOException {
-        Stream<Account> accountLists =accountDao.getAccountList();
-        return Optional.ofNullable(accountLists).orElseGet(Stream::empty)
+        log.debug("Entering AccountResource getAccountList");
+        Stream<Account> accountStream =accountDao.getAccountList();
+        return Optional.ofNullable(accountStream).orElseGet(Stream::empty)
                 .filter(Objects::nonNull).collect(Collectors.toList());
 
     }
@@ -38,6 +38,7 @@ public class AccountResource {
     @GetMapping("/account/{accountIdentifier}")
     @ResponseBody
     public ResponseEntity<Account> getAccount(@PathVariable Long accountIdentifier) throws IOException {
+        log.debug("Entering AccountResource getAccount {}",accountIdentifier);
         Optional<Account> account =accountDao.getAccount(accountIdentifier);
         return ResponseEntity.ok().body(account
                 .orElseThrow(() -> new ResponseStatusException(
@@ -45,8 +46,9 @@ public class AccountResource {
 
     }
     @PostMapping(value="/account")
-    ResponseEntity<?> create( @Valid @RequestBody Account account) {
-
+    ResponseEntity<?> createAccount( @Valid @RequestBody Account account) {
+        log.debug("Entering AccountResource createAccount Account Name {}" +
+                " Account Type {}",account.getAccountName(),account.getAccountType());
         Account accountSaved = accountDao.saveAccount(account);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -59,12 +61,13 @@ public class AccountResource {
 
 
     @DeleteMapping(value="/account/{accountIdentifier}")
-    ResponseEntity<String> delete(@PathVariable Long accountIdentifier) {
+    ResponseEntity<String> deleteAccount(@PathVariable Long accountIdentifier) {
+        log.debug("Entering AccountResource deleteAccount {}",accountIdentifier);
         Optional<Account> account =accountDao.getAccount(accountIdentifier);
         account.orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Account Not Found"));
         accountDao.deleteAccount(accountIdentifier);
-        return ResponseEntity.ok().body("Account deleted with success!");
+        return ResponseEntity.ok().body("Account deleted");
     }
 
 }
