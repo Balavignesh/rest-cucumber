@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,8 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     @Override
-    public Account saveAccount(Account account) {
+    @Transactional
+    public synchronized Account saveAccount(Account account) {
         account.setAddedBy("APP");
         account.setAddedTimestamp(new Timestamp(System.currentTimeMillis()));
         return accountRepository.save(account);
