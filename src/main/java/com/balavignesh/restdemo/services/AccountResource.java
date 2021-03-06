@@ -37,9 +37,9 @@ public class AccountResource {
 
     @GetMapping("/account/{accountIdentifier}")
     @ResponseBody
-    public ResponseEntity<Account> getAccount(@PathVariable String accountIdentifier) throws IOException {
-        Account account =accountDao.getAccount(accountIdentifier);
-        return ResponseEntity.ok().body(Optional.ofNullable(account)
+    public ResponseEntity<Account> getAccount(@PathVariable Long accountIdentifier) throws IOException {
+        Optional<Account> account =accountDao.getAccount(accountIdentifier);
+        return ResponseEntity.ok().body(account
                 .orElseThrow(() -> new ResponseStatusException(
                 HttpStatus.NOT_FOUND, "Account Not Found")));
 
@@ -59,14 +59,12 @@ public class AccountResource {
 
 
     @DeleteMapping(value="/account/{accountIdentifier}")
-    ResponseEntity<String> delete(@PathVariable String accountIdentifier) {
-        Account account =accountDao.getAccount(accountIdentifier);
-        Optional.ofNullable(account)
-                .orElseThrow(() -> new ResponseStatusException(
+    ResponseEntity<String> delete(@PathVariable Long accountIdentifier) {
+        Optional<Account> account =accountDao.getAccount(accountIdentifier);
+        account.orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Account Not Found"));
-        boolean accountDeleteStatus = accountDao.deleteAccount(accountIdentifier);
-        return accountDeleteStatus ? ResponseEntity.ok().body("Account deleted with success!")
-                : ResponseEntity.status(HttpStatus.NOT_MODIFIED).body("Account Not Deleted");
+        accountDao.deleteAccount(accountIdentifier);
+        return ResponseEntity.ok().body("Account deleted with success!");
     }
 
 }

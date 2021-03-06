@@ -3,14 +3,15 @@ package com.balavignesh.restdemo.dao;
 import com.balavignesh.restdemo.domain.Account;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 public interface AccountDao {
     Stream<Account> getAccountList();
 
-    Account getAccount(String accountIdentifier);
+    Optional<Account> getAccount(Long accountIdentifier);
 
-    boolean deleteAccount(String accountIdentifier);
+    void deleteAccount(Long accountIdentifier);
 
     Account saveAccount(Account account);
 }
