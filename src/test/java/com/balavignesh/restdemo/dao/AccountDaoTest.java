@@ -1,5 +1,6 @@
 package com.balavignesh.restdemo.dao;
 
+import com.balavignesh.restdemo.common.BaseEntity;
 import com.balavignesh.restdemo.domain.Account;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
@@ -82,9 +83,10 @@ public class AccountDaoTest {
 
         doReturn(getAccount()).when(accountRepository).save(getAccount());
         Account account = accountDao.saveAccount(getAccount());
-        log.debug(account.toString());
         assertEquals(getAccount(),account);
     }
+
+
 
     @Test
     @DisplayName("Delete an Account")

@@ -41,21 +41,8 @@ public class AccountFileDaoTest {
         log.debug("Entering Test for testSaveAccountFile");
         AccountFile accountFile = new AccountFile
                 (100L,"TestFile",null);
-        accountFile.setFileIdentifier(200L);
-        accountFile.setFileName("TestFile 2");
-        accountFile.setFileBytes(null);
-        accountFile.setAddedTimestamp(new Timestamp(System.currentTimeMillis()));
-        accountFile.setUpdatedTimestamp(new Timestamp(System.currentTimeMillis()));
-        log.debug(accountFile.hashCode()+"");
-        log.debug(accountFile.equals(accountFile)+"");
         doReturn(accountFile).when(accountFileRepository).save(accountFile);
         AccountFile accountFileDb = accountFileDao.saveAccountFile(accountFile);
-        log.debug(accountFileDb.toString());
-        log.debug(accountFileDb.getFileName());
-        log.debug(accountFileDb.getAddedBy());
-        log.debug(accountFileDb.getUpdatedBy());
-        log.debug(accountFileDb.getAddedTimestamp().toString());
-        log.debug(accountFileDb.getUpdatedTimestamp().toString());
         assertEquals(accountFile,accountFileDb);
     }
 }
