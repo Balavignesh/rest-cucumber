@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +30,6 @@ public class AccountDaoImpl implements AccountDao {
         return accountRepository.findById(accountIdentifier);
     }
 
-
     @Override
     public void deleteAccount(Long accountIdentifier) {
         accountRepository.deleteById(accountIdentifier);
@@ -37,7 +37,8 @@ public class AccountDaoImpl implements AccountDao {
 
     @Override
     public Account saveAccount(Account account) {
-        account.setAccountIdentifier(000012345L);
-        return account;
+        account.setAddedBy("APP");
+        account.setAddedTimestamp(new Timestamp(System.currentTimeMillis()));
+        return accountRepository.save(account);
     }
 }
