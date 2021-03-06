@@ -48,7 +48,7 @@ public class AccountResource {
     ResponseEntity<?> create( @Valid @RequestBody Account account) {
 
         Account accountSaved = accountDao.saveAccount(account);
-        
+
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(accountSaved.getAccountIdentifier())
