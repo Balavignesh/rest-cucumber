@@ -29,6 +29,7 @@ public class AccountResource {
     @ResponseBody
     public List<Account> getAccountList() throws IOException {
         log.debug("Entering AccountResource getAccountList");
+        System.out.println("Hello");
         Stream<Account> accountStream =accountDao.getAccountList();
         return Optional.ofNullable(accountStream).orElseGet(Stream::empty)
                 .filter(Objects::nonNull).collect(Collectors.toList());
