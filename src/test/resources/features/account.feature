@@ -11,11 +11,21 @@ Feature: Account REST Testing
     Then I receive valid HTTP Response status code 200
     And the response equals to Account Identifier 10001
 
+  Scenario: Get an invalid Account
+    Given When Application is up
+    When I sent GET an Account request with 10004
+    Then I receive valid HTTP Response status code 404
+
   Scenario: Delete an Account
     Given When Application is up
     When I sent DELETE an Account request with 10002
     Then I receive valid Delete HTTP Response status code 200
     And the response equals to 'Account deleted'
+
+  Scenario: Delete an Invalid Account
+    Given When Application is up
+    When I sent DELETE an Account request with 10004
+    Then I receive valid Delete HTTP Response status code 404
 
   Scenario: Create an Accounts
     Given When Application is up
