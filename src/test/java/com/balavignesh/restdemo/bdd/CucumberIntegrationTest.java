@@ -31,7 +31,7 @@ public abstract class CucumberIntegrationTest {
 
     public String buildUrl( String apiPath,String value) {
 
-        return new StringBuffer().append(buildBaseUrl()).append(apiPath).append(value).toString();
+        return new StringBuffer().append(buildBaseUrl()).append(apiPath).append("/").append(value).toString();
     }
 
     public String buildUrl( String path) {
