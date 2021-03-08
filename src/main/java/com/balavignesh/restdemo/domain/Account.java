@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Data
@@ -22,9 +24,13 @@ public class Account extends BaseEntity implements Serializable {
     @Column(name = "account_id")
     private Long accountIdentifier;
 
+    @NotNull
+    @Size(max=50, message="Account Name should not be more than 50 characters")
     @Column(name = "account_name")
     private String accountName;
 
+    @NotNull
+    @Size(max=10, message="Account Type should not be more than 10 characters")
     @Column(name = "account_type")
     private String accountType;
 

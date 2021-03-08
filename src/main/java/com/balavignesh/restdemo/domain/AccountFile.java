@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Data
 @AllArgsConstructor
@@ -21,6 +22,7 @@ public class AccountFile extends BaseEntity {
     @Column(name = "file_id")
     private Long fileIdentifier;
 
+    @Size(max=100, message="File name should not be more than 100 characters")
     @Column(name = "file_name")
     private String fileName;
 
