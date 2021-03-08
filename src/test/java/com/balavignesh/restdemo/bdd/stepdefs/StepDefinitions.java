@@ -6,7 +6,6 @@ import com.balavignesh.restdemo.domain.Account;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.cucumber.java8.En;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 

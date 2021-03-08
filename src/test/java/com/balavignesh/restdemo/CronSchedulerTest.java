@@ -4,7 +4,6 @@ import com.balavignesh.restdemo.dao.AccountDao;
 import com.balavignesh.restdemo.dao.AccountFileDao;
 import com.balavignesh.restdemo.domain.Account;
 import com.balavignesh.restdemo.domain.AccountFile;
-import com.balavignesh.restdemo.services.AccountResource;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

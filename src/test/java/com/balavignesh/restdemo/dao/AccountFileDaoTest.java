@@ -1,6 +1,5 @@
 package com.balavignesh.restdemo.dao;
 
-import com.balavignesh.restdemo.domain.Account;
 import com.balavignesh.restdemo.domain.AccountFile;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
