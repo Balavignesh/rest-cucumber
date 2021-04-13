@@ -3,18 +3,19 @@
 This is the basic app which integrates the following technologies
 
 
-1. Spring Boot
-2. H2 Database
-3. Spring Jpa
-4. Spring MockMvc
-5. Spring Scheduler
-6. Lombok
-7. Actuator
-8. Junit 5
-9. Cucumber
-10. Masterthought - cucumber-reporting
-11. Jacoco
-12. TestRestTemplate
+1. Java 8
+2. Spring Boot
+3. H2 Database
+4. Spring Jpa
+5. Spring MockMvc
+6. Spring Scheduler
+7. Lombok
+8. Actuator
+9. Junit 5
+10. Cucumber
+11. Masterthought - cucumber-reporting
+12. Jacoco
+13. TestRestTemplate
 
 Below Reports will be generated inside target/site after clean install.
 
