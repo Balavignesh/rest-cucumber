@@ -3,9 +3,9 @@
 This is the basic app which integrates the following technologies
 
 
-1. Java 8
+1. Java 18
 2. Spring Boot
-3. H2 Database
+3. Postgres Database
 4. Spring Jpa
 5. Spring MockMvc
 6. Spring Scheduler
@@ -16,6 +16,9 @@ This is the basic app which integrates the following technologies
 11. Masterthought - cucumber-reporting
 12. Jacoco
 13. TestRestTemplate
+
+create database testdb;
+
 
 Below Reports will be generated inside target/site after clean install.
 

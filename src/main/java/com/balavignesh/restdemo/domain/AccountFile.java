@@ -18,7 +18,7 @@ import javax.validation.constraints.Size;
 public class AccountFile extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "file_id")
     private Long fileIdentifier;
 

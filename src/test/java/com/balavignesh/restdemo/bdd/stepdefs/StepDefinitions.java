@@ -1,12 +1,15 @@
 package com.balavignesh.restdemo.bdd.stepdefs;
 
-
-import com.balavignesh.restdemo.bdd.CucumberIntegrationTest;
 import com.balavignesh.restdemo.domain.Account;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.cucumber.java8.En;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -14,13 +17,42 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class StepDefinitions extends CucumberIntegrationTest implements En {
+public class StepDefinitions implements En {
 
     private  static  final  String  BASE_SERVICE_URL  =  "/api/account";
     private  static  final  String  HEALTH_SERVICE_URL  =  "/actuator/health";
     private ResponseEntity<Account> accountResponse;
     private ResponseEntity<String> delResponse;
     private ResponseEntity<List<Account>> getAllResponse;
+
+    private  static  final  String  BASE_URL  =  "http://localhost:";
+
+    @Autowired
+    protected TestRestTemplate restTemplate;
+
+    @LocalServerPort
+    protected int serverPort;
+
+    public HttpHeaders getDefaultHttpHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        return headers;
+    }
+
+    public String buildUrl( String apiPath,String value) {
+
+        return new StringBuffer().append(buildBaseUrl()).append(apiPath).append("/").append(value).toString();
+    }
+
+    public String buildUrl( String path) {
+
+        return new StringBuffer().append(buildBaseUrl()).append(path).toString();
+    }
+
+    public String buildBaseUrl() {
+
+        return new StringBuffer().append(BASE_URL).append(serverPort).toString();
+    }
 
     public StepDefinitions() {
 
