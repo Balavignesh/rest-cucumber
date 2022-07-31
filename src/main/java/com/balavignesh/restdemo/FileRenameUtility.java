@@ -17,9 +17,9 @@ public class FileRenameUtility {
             File[] files = file.listFiles();
             List<File> filelist = Arrays.asList(files);
             filelist.forEach(f->{
-                if(!f.isDirectory() && f.getName().contains("-5StarMusiQ.Com")){
+                if(!f.isDirectory() && f.getName().contains("-5.Com")){
                     System.out.println(f.getAbsolutePath());
-                    String newName = f.getAbsolutePath().replace("-5StarMusiQ.Com","");
+                    String newName = f.getAbsolutePath().replace("-5.Com","");
                     boolean isRenamed = f.renameTo(new File(newName));
                     if(isRenamed)
                         System.out.println(String.format("Renamed this file %s to  %s",f.getName(),newName));
